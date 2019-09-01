@@ -42,7 +42,7 @@ class Application {
             'method' => strtolower($_SERVER['REQUEST_METHOD']),
             'uri' => (trim($_SERVER['REQUEST_URI'], '/') == '') ? $this->getDefaultUrl() : trim($_SERVER['REQUEST_URI'], '/') == ''
         ];
-        $uriInfo = parseUri($this->parseUri($requestInfo['uri']));
+        $uriInfo = $this->parseUri($requestInfo['uri']);
         $requestInfo['class'] = $uriInfo['class'];
         $requestInfo['parameters'] = $uriInfo['params'];
         return $requestInfo;
