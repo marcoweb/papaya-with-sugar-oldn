@@ -40,7 +40,9 @@ class Application {
     private function parseRequest() {
         $requestInfo = [
             'method' => strtolower($_SERVER['REQUEST_METHOD']),
-            'uri' => (trim($_SERVER['REQUEST_URI'], '/') == '') ? $this->getDefaultUrl() : trim($_SERVER['REQUEST_URI'], '/') == ''
+            'uri' => (trim($_SERVER['REQUEST_URI'], '/') == '') ? $this->getDefaultUrl() : trim($_SERVER['REQUEST_URI'], '/') == '',
+            'class' => null,
+            'parameters' => []
         ];
         $uriInfo = $this->parseUri($requestInfo['uri']);
         $requestInfo['class'] = $uriInfo['class'];
@@ -49,6 +51,8 @@ class Application {
     }
 
     public function run() {
-        return $this->parseRequest();
+        $request = $this->parseRequest();
+        if(!is_null($request['class']))
+            return call_user_func_array([$request['class'], $request['method']], $request['parameters']);
     }
 }
