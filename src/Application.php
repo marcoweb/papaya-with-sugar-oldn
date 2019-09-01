@@ -18,10 +18,16 @@ class Application {
     }
 
     private function parseRequest() {
-        $uri = trim($_SERVER['REQUEST_URI'], '/');
-        if($uri == '')
-            $uri = $this->getDefaultUrl();
-        return $uri;
+        $requestInfo = [
+            'method' => strtolower($_SERVER['REQUEST_METHOD']),
+            'uri' => function() {
+                $uri = trim($_SERVER['REQUEST_URI'], '/');
+                if($uri == '')
+                    $uri = $this->getDefaultUrl();
+                return $uri;
+            }
+        ];
+        return $requestInfo;
     }
 
     public function run() {
