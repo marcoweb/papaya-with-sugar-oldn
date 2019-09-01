@@ -22,9 +22,10 @@ class Application {
     }
 
     private function parseUri(string $uri, array $info = []) : array {
-        $className = '\\' . $this->getRequestHandlerNamespace();
+        $className = $this->getRequestHandlerNamespace();
         foreach(explode('/', $uri) as $segment)
             $className .= '\\' . ucfirst($segment);
+        $className .= 'Handler';
         if(class_exists($className))
             return ['class' => $className, 'parameters' => $info];
         else
