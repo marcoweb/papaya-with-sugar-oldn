@@ -5,7 +5,7 @@ class Application {
     private $requestHandlerNamespace = null;
     private $defaultUrl = null;
 
-    public function getRequestHandlerNamespace(string $namespace) : void {
+    public function setRequestHandlerNamespace(string $namespace) : void {
         $this->requestHandlerNamespace = $namespace;
     }
     
