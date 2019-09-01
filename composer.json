@@ -1,0 +1,18 @@
+{
+    "name": "marcoweb/papaya-with-sugar",
+    "version": "1.0.0-dev",
+    "description": "Simple PHP Framework",
+    "type": "library",
+    "authors": [
+        {
+            "name" : "Marco Antônio Gusmão Carvalho",
+            "email" : "marcocarvalho.web@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PapayaWithSugar\\" : "src//"
+        }
+    }
+}
