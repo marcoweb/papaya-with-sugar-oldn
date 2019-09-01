@@ -25,14 +25,15 @@ class Application {
         $className = $this->getRequestHandlerNamespace();
         foreach(explode('/', $uri) as $segment)
             $className .= '\\' . ucfirst($segment);
-        return [$className .= 'Handler'];
         if(class_exists($className))
             return ['class' => $className, 'parameters' => $info];
-        else {
-            $info[] = substr($uri, strrpos($uri, '/') + 1);
-            $uri = substr($uri, 0, strrpos($uri, '/'));
-            return $this->parseUri($uri, $info);
-        }
+        else
+            return [];
+        // else {
+        //     $info[] = substr($uri, strrpos($uri, '/') + 1);
+        //     $uri = substr($uri, 0, strrpos($uri, '/'));
+        //     return $this->parseUri($uri, $info);
+        // }
     }
 
     private function parseRequest() {
