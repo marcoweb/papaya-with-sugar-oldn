@@ -31,7 +31,7 @@ class Application {
         else {
             $info[] = substr($uri, strrchr($uri, '/') + 1);
             $uri = substr($uri, 0, strrchr($uri, '/'));
-            return parseUri($uri, $info);
+            return $this->parseUri($uri, $info);
         }
         // else {
         //     $info[] = substr($uri, strrpos($uri, '/') + 1);
