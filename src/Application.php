@@ -26,6 +26,7 @@ class Application {
         foreach(explode('/', $uri) as $segment)
             $className .= '\\' . ucfirst($segment);
         $className .= 'Handler';
+        return [$className];
         if(class_exists($className))
             return ['class' => $className, 'parameters' => $info];
         else
