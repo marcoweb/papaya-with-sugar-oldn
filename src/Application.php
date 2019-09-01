@@ -28,8 +28,11 @@ class Application {
         $className .= 'Handler';
         if(class_exists($className))
             return ['class' => $className, 'params' => $info];
-        else
-            return [];
+        else {
+            $info[] = substr($uri, strrchr($uri, '/') + 1);
+            $uri = substr($uri, 0, strrchr($uri, '/'));
+            return parseUri($uri, $info);
+        }
         // else {
         //     $info[] = substr($uri, strrpos($uri, '/') + 1);
         //     $uri = substr($uri, 0, strrpos($uri, '/'));
