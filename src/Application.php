@@ -25,7 +25,7 @@ class Application {
         $className = $this->getRequestHandlerNamespace();
         foreach(explode('/', $uri) as $segment)
             $className .= '\\' . ucfirst($segment);
-        return $className .= 'Handler';
+        return [$className .= 'Handler'];
         if(class_exists($className))
             return ['class' => $className, 'parameters' => $info];
         else {
