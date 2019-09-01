@@ -40,7 +40,7 @@ class Application {
     private function parseRequest() {
         $requestInfo = [
             'method' => strtolower($_SERVER['REQUEST_METHOD']),
-            'uri' => (trim($_SERVER['REQUEST_URI'], '/') == '') ? $this->getDefaultUrl() : trim($_SERVER['REQUEST_URI'], '/') == '',
+            'uri' => (trim($_SERVER['REQUEST_URI'], '/') == '') ? $this->getDefaultUrl() : trim($_SERVER['REQUEST_URI'], '/'),
             'class' => null,
             'parameters' => []
         ];
