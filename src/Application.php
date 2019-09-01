@@ -27,7 +27,7 @@ class Application {
             $className .= '\\' . ucfirst($segment);
         $className .= 'Handler';
         if(class_exists($className))
-            return ['class' => $className, 'parameters' => $info];
+            return ['class' => $className, 'params' => $info];
         else
             return [];
         // else {
