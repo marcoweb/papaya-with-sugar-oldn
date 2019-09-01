@@ -20,12 +20,7 @@ class Application {
     private function parseRequest() {
         $requestInfo = [
             'method' => strtolower($_SERVER['REQUEST_METHOD']),
-            'uri' => function() {
-                $uri = trim($_SERVER['REQUEST_URI'], '/');
-                if($uri == '')
-                    $uri = $this->getDefaultUrl();
-                return $uri;
-            }
+            'uri' => (trim($_SERVER['REQUEST_URI'], '/') == '') ? $this->getDefaultUrl() : trim($_SERVER['REQUEST_URI'], '/') == ''
         ];
         return $requestInfo;
     }
