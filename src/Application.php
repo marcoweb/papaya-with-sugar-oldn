@@ -29,8 +29,8 @@ class Application {
         if(class_exists($className))
             return ['class' => $className, 'params' => $info];
         else {
-            $info[] = substr($uri, strrchr($uri, '/') + 1);
-            $uri = substr($uri, 0, strrchr($uri, '/'));
+            $info[] = substr($uri, strrchr($uri, '/'));
+            $uri = substr($uri, 0, strrchr($uri, '/') + 1);
             return $this->parseUri($uri, $info);
         }
         // else {
