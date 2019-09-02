@@ -59,7 +59,7 @@ class Application {
     public function run() {
         $request = $this->parseRequest();
         if(!is_null($request['class'])) {
-            $handler = new $request['class']();
+            $handler = new $request['class']($this);
             return call_user_func_array([$handler, $request['method']], $request['parameters']);
         } else {
             http_response_code(404);
