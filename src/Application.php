@@ -29,15 +29,10 @@ class Application {
         if(class_exists($className))
             return ['class' => $className, 'params' => $info];
         else {
-            $info[] = substr($uri, strrpos($uri, '/') + 1);
+            array_push($info, substr($uri, strrpos($uri, '/') + 1));
             $uri = substr($uri, 0, strrpos($uri, '/'));
             return $this->parseUri($uri, $info);
         }
-        // else {
-        //     $info[] = substr($uri, strrpos($uri, '/') + 1);
-        //     $uri = substr($uri, 0, strrpos($uri, '/'));
-        //     return $this->parseUri($uri, $info);
-        // }
     }
 
     private function parseRequest() {
