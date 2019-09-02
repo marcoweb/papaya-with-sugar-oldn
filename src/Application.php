@@ -52,7 +52,6 @@ class Application {
             $methodParameters = $rf->getParameters();
             for($i = 0;$i < count($methodParameters);$i++)
                 $requestInfo['parameters'][$methodParameters[$i]->name] = $uriInfo['params'][$i];
-            //$requestInfo['parameters'] = array_combine(array_values($rf->getParameters()), $uriInfo['params']);
         }
         return $requestInfo;
     }
@@ -60,8 +59,7 @@ class Application {
     public function run() {
         $request = $this->parseRequest();
         if(!is_null($request['class']))
-            return var_dump($request);
-            //return call_user_func_array([$request['class'], $request['method']], $request['parameters']);
+            return call_user_func_array([$request['class'], $request['method']], $request['parameters']);
         else {
             http_response_code(404);
             die();
