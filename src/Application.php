@@ -55,5 +55,9 @@ class Application {
         $request = $this->parseRequest();
         if(!is_null($request['class']))
             return call_user_func_array([$request['class'], $request['method']], $request['parameters']);
+        else {
+            http_response_code(404);
+            die();
+        }
     }
 }
