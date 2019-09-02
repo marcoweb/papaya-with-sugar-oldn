@@ -47,7 +47,9 @@ class Application {
         ];
         $uriInfo = $this->parseUri($requestInfo['uri']);
         $requestInfo['class'] = $uriInfo['class'];
-        $requestInfo['parameters'] = $uriInfo['params'];
+        if(!is_null($uriInfo['class'])) {
+            $requestInfo['parameters'] = $uriInfo['params'];
+        }
         return $requestInfo;
     }
 
