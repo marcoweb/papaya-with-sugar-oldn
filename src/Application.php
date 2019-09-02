@@ -49,7 +49,7 @@ class Application {
         $requestInfo['class'] = $uriInfo['class'];
         if(!is_null($uriInfo['class'])) {
             $rf = new \ReflectionMethod($requestInfo['class'], $requestInfo['method']);
-            $requestInfo['parameters'] = array_combine($rf->getParameters(), $uriInfo['params']);
+            $requestInfo['parameters'] = array_combine(array_values($rf->getParameters()), $uriInfo['params']);
         }
         return $requestInfo;
     }
