@@ -31,7 +31,10 @@ class Application {
         else {
             array_unshift($info, substr($uri, strrpos($uri, '/') + 1));
             $uri = substr($uri, 0, strrpos($uri, '/'));
-            return $this->parseUri($uri, $info);
+            if($uri == '')
+                return ['class' => null, 'params' => $info];
+            else
+                return $this->parseUri($uri, $info);
         }
     }
 
