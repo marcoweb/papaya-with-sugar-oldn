@@ -47,10 +47,10 @@ class Application {
         ];
         $uriInfo = $this->parseUri($requestInfo['uri']);
         $requestInfo['class'] = $uriInfo['class'];
-        // if(!is_null($uriInfo['class'])) {
-        //     $rf = new \ReflectionMethod($requestInfo['class'], $requestInfo['method']);
-        //     $requestInfo['parameters'] = array_combine($rf->getParameters(), $uriInfo['params']);
-        // }
+        if(!is_null($uriInfo['class'])) {
+            $rf = new \ReflectionMethod($requestInfo['class'], $requestInfo['method']);
+            $requestInfo['parameters'] = array_combine($rf->getParameters(), $uriInfo['params']);
+        }
         return $requestInfo;
     }
 
