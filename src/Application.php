@@ -29,7 +29,7 @@ class Application {
         if(class_exists($className))
             return ['class' => $className, 'params' => $info];
         else {
-            array_push($info, substr($uri, strrpos($uri, '/') + 1));
+            array_unshift($info, substr($uri, strrpos($uri, '/') + 1));
             $uri = substr($uri, 0, strrpos($uri, '/'));
             return $this->parseUri($uri, $info);
         }
