@@ -50,6 +50,7 @@ class Application {
 
     public function run() {
         $request = $this->parseRequest();
+        return $request;
         if(!is_null($request['class']))
             return call_user_func_array([$request['class'], $request['method']], $request['parameters']);
     }
