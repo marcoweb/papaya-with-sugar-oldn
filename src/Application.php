@@ -51,7 +51,7 @@ class Application {
             $rf = new \ReflectionMethod($requestInfo['class'], $requestInfo['method']);
             $methodParameters = $rf->getParameters();
             for($i = 0;$i < count($methodParameters);$i++)
-                $requestInfo['parameters'][$methodParameters[$i]->name] = $uriInfo['params'][$i];
+                $requestInfo['parameters'][$methodParameters[$i]->name] =isset($uriInfo['params'][$i]) ? $uriInfo['params'][$i] : null;
         }
         return $requestInfo;
     }
