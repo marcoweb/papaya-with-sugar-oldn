@@ -4,7 +4,7 @@ namespace PapayaWithSugar;
 class Entity {
     public function getConfig() {
         return [
-            'table' => get_class($this)
+            'table' => strtolower(substr(get_class($this), strrpos(get_class($this), '\\') + 1))
         ];
     }
 }
