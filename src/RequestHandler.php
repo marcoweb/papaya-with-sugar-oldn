@@ -9,14 +9,19 @@ class RequestHandler {
     }
 
     public function view(array $parameters = []) {
-        $viewPath = $_SERVER['DOCUMENT_ROOT'];
-        $viewPath .= (substr($viewPath, strrpos($viewPath, DIRECTORY_SEPARATOR) + 1) == 'public') ? '/views' : '/public/views';
-        $viewPath .= strtolower(str_replace([$this->application->getRequestHandlerNamespace(), '\\', 'Handler'], ['', DIRECTORY_SEPARATOR, ''], get_class($this))) . '.php';
-        $view_content = '';
-        if(file_exists($viewPath)) {
+        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+        $viewsRoot = (substr($documentRoot, strrpos($documentRoot, DIRECTORY_SEPARATOR) + 1) == 'public') ? '/views' : '/public/views';
+        $viewFile .= strtolower(str_replace([$this->application->getRequestHandlerNamespace(), '\\', 'Handler'], ['', DIRECTORY_SEPARATOR, ''], get_class($this))) . '.php';
+        // $viewPath = $_SERVER['DOCUMENT_ROOT'];
+        // $viewPath .= (substr($viewPath, strrpos($viewPath, DIRECTORY_SEPARATOR) + 1) == 'public') ? '/views' : '/public/views';
+        // $viewPath .= strtolower(str_replace([$this->application->getRequestHandlerNamespace(), '\\', 'Handler'], ['', DIRECTORY_SEPARATOR, ''], get_class($this))) . '.php';
+        // $view_content = '';
+        $template = 'default';
+        if(file_exists($viewFile)) {
             ob_start();
-            include($viewPath);
+            include($viewFile);
             $view_content = ob_get_clean();
+            $templateFile = $viewPath . '/_templates/' . $template . '.php';
         }
         return $view_content;
     }
