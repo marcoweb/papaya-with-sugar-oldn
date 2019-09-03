@@ -15,7 +15,7 @@ class RequestHandler {
         // $viewPath = $_SERVER['DOCUMENT_ROOT'];
         // $viewPath .= (substr($viewPath, strrpos($viewPath, DIRECTORY_SEPARATOR) + 1) == 'public') ? '/views' : '/public/views';
         // $viewPath .= strtolower(str_replace([$this->application->getRequestHandlerNamespace(), '\\', 'Handler'], ['', DIRECTORY_SEPARATOR, ''], get_class($this))) . '.php';
-        // $view_content = '';
+        $view_content = '';
         $template = 'default';
         if(file_exists($viewFile)) {
             ob_start();
