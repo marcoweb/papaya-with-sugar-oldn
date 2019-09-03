@@ -23,6 +23,6 @@ class RequestHandler {
             $view_content = ob_get_clean();
             $templateFile = $viewPath . '/_templates/' . $template . '.php';
         }
-        return $view_content;
+        return $viewFile;
     }
 }
