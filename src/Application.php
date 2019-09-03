@@ -12,7 +12,8 @@ class Application {
     }
 
     public function getConfig() {
-        return $this->config;
+        $configPath = ((substr($this->getApplicationSystemPath(), strrpos($this->getApplicationSystemPath(), DIRECTORY_SEPARATOR) == '/public'))) ? '../config' : '/config';
+        return $configPath;
     }
 
     public function setApplicationRoot(string $url) {
