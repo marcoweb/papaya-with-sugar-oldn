@@ -10,8 +10,8 @@ class RequestHandler {
 
     public function view(array $parameters = []) {
         $viewPath = $_SERVER['DOCUMENT_ROOT'];
-        // $viewPath .= (substr($viewPath, strrpos(DIRECTORY_SEPARATOR)) == 'public') ? '/views' : '/public/views';
-        //$viewPath .= strtolower(str_replace([$this->application->getRequestHandlerNamespace(), '\\', 'Handler'], ['', '/', ''], get_class($this))) . '.php';
-        return substr($viewPath, strrpos($viewPath, DIRECTORY_SEPARATOR));
+        $viewPath .= (substr($viewPath, strrpos($viewPath, DIRECTORY_SEPARATOR) + 1) == 'public') ? '/views' : '/public/views';
+        $viewPath .= strtolower(str_replace([$this->application->getRequestHandlerNamespace(), '\\', 'Handler'], ['', '/', ''], get_class($this))) . '.php';
+        return $viewPath;
     }
 }
