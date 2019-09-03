@@ -4,6 +4,24 @@ namespace PapayaWithSugar;
 class Application {
     private $requestHandlerNamespace = null;
     private $defaultUrl = null;
+    private $applicationRoot = '/';
+    private $config = [];
+
+    public function getApplicationSystemPath() {
+        return str_replace('/', DIRECTORY_SEPARATOR, ($_SERVER['DOCUMENT_ROOT'] . $this->applicationRoot));
+    }
+
+    public function getConfig() {
+        return $this->config;
+    }
+
+    public function setApplicationRoot(string $url) {
+        $this->applicationRoot = $url;
+    }
+
+    public function getApplicationRoot() {
+        return $this->applicationRoot;
+    }
 
     public function setRequestHandlerNamespace(string $namespace) : void {
         $this->requestHandlerNamespace = $namespace;
