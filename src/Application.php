@@ -13,7 +13,13 @@ class Application {
 
     public function getConfig() {
         $configPath = ((substr($this->getApplicationSystemPath(), strrpos($this->getApplicationSystemPath(), DIRECTORY_SEPARATOR) == '/public'))) ? '../config' : '/config';
-        return $configPath;
+        if(file_exists($configPath)) {
+            $d = dir($configPath);
+            while($file = $d->read())
+                if(substr($file, strrpos($file, '.')) == '.php')
+                    $this->config[str_replace('.php', '', $file)] = include($configPath.'/'.$file);
+        }
+        return $this->config;
     }
 
     public function setApplicationRoot(string $url) {
