@@ -17,12 +17,18 @@ class RequestHandler {
         // $viewPath .= strtolower(str_replace([$this->application->getRequestHandlerNamespace(), '\\', 'Handler'], ['', DIRECTORY_SEPARATOR, ''], get_class($this))) . '.php';
         $view_content = '';
         $template = 'default';
+        $result = '';
         if(file_exists($viewFile)) {
             ob_start();
             include($viewFile);
             $view_content = ob_get_clean();
             $templateFile = $viewPath . '/_templates/' . $template . '.php';
+            if(file_exists($templateFile)) {
+                ob_start();
+                include($templateFile);
+                $result = ob_get_clean();
+            }
         }
-        return $view_content;
+        return $result;
     }
 }
