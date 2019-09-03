@@ -22,7 +22,7 @@ class RequestHandler {
             ob_start();
             include($viewFile);
             $view_content = ob_get_clean();
-            $templateFile = $viewPath . '/_templates/' . $template . '.php';
+            $templateFile = $viewsRoot . '/_templates/' . $template . '.php';
             if(file_exists($templateFile)) {
                 ob_start();
                 include($templateFile);
