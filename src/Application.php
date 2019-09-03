@@ -11,7 +11,7 @@ class Application {
         return str_replace('/', DIRECTORY_SEPARATOR, ($_SERVER['DOCUMENT_ROOT'] . $this->applicationRoot));
     }
 
-    public function getConfig() {
+    private function parseConfig() {
         $configPath = ((substr($this->getApplicationSystemPath(), strrpos($this->getApplicationSystemPath(), DIRECTORY_SEPARATOR) == '/public'))) ? '../config' : '/config';
         if(file_exists($configPath)) {
             $d = dir($configPath);
@@ -19,6 +19,11 @@ class Application {
                 if(substr($file, strrpos($file, '.')) == '.php')
                     $this->config[str_replace('.php', '', $file)] = include($configPath.'/'.$file);
         }
+    }
+
+    public function getConfig() {
+        if(count($this->config) == 0)
+            $this->parseConfig();
         return $this->config;
     }
 
