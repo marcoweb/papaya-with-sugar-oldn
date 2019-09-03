@@ -26,7 +26,7 @@ class RequestHandler {
             if(file_exists($templateFile)) {
                 ob_start();
                 include($templateFile);
-                $result = ob_get_clean();
+                $result = ob_get_clean() . "\n";
             }
         }
         return $result;
