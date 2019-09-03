@@ -9,9 +9,8 @@ class RequestHandler {
     }
 
     public function view(array $parameters = []) {
-        $className = str_replace([$this->application->getRequestHandlerNamespace(), '\\'], ['', '/'], get_class($this));
-        $viewPath = '/public/views/' .
-            strtolower(str_replace('\\', '/', substr(get_class($this), 0, strrpos(get_class($this), '\\'))));
+        $className = strtolower(str_replace([$this->application->getRequestHandlerNamespace(), '\\', 'Handler'], ['', '/', ''], get_class($this)));
+        $viewPath = '/public/views/';
         return $className;
     }
 }
