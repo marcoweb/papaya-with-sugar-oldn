@@ -12,6 +12,6 @@ class RequestHandler {
         $viewPath = $_SERVER['DOCUMENT_ROOT'];
         // $viewPath .= (substr($viewPath, strrpos(DIRECTORY_SEPARATOR)) == 'public') ? '/views' : '/public/views';
         //$viewPath .= strtolower(str_replace([$this->application->getRequestHandlerNamespace(), '\\', 'Handler'], ['', '/', ''], get_class($this))) . '.php';
-        return substr($viewPath, strrpos(DIRECTORY_SEPARATOR));
+        return substr($viewPath, strrpos($viewPath, DIRECTORY_SEPARATOR));
     }
 }
