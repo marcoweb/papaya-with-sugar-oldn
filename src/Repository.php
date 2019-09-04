@@ -10,7 +10,9 @@ class Repository {
     }
 
     public function findAll() {
-        return [];
+        $stmt = $this->dbConnection->prepare('SELECT * FROM '.($this->$entityClassName)::getConfig()['table']);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
     public function save($object) {
