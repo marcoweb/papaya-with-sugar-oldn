@@ -14,9 +14,9 @@ class Entity {
             return $this->$methodName($value);
     }
 
-    public function getConfig() {
+    public static function getConfig() {
         return [
-            'table' => strtolower(substr(get_class($this), strrpos(get_class($this), '\\') + 1))
+            'table' => strtolower(substr(get_class(self), strrpos(get_class(self), '\\') + 1))
         ];
     }
 }
