@@ -16,7 +16,7 @@ class Entity {
 
     public static function getConfig() {
         return [
-            'table' => strtolower(substr(get_class(self), strrpos(get_class(self), '\\') + 1))
+            'table' => strtolower(substr(get_class(), strrpos(get_class(), '\\') + 1))
         ];
     }
 }
