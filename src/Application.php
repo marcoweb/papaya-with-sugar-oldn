@@ -3,6 +3,7 @@ namespace PapayaWithSugar;
 
 class Application {
     private $requestHandlerNamespace = null;
+    private $repositoriesNamespace = null;
     private $defaultUrl = null;
     private $applicationRoot = '/';
     private $config = [];
@@ -21,10 +22,10 @@ class Application {
         }
     }
 
-    public function getConfig() {
+    public function getConfig($section = null) {
         if(count($this->config) == 0)
             $this->parseConfig();
-        return $this->config;
+        return is_null($section) ? $this->config : $this->config[$section];
     }
 
     public function setApplicationRoot(string $url) {
@@ -33,6 +34,14 @@ class Application {
 
     public function getApplicationRoot() {
         return $this->applicationRoot;
+    }
+
+    public function setRepositoriesNamespace(string $namespace) : void {
+        $this->repositoriesNamespace = $namespace;
+    }
+
+    public function getRepositoriesNamespace() : string {
+        return $this->repositoriesNamespace;
     }
 
     public function setRequestHandlerNamespace(string $namespace) : void {
@@ -95,5 +104,13 @@ class Application {
             http_response_code(404);
             die();
         }
+    }
+
+    public function getRepository($entityClassName) {
+        $dsn = 'mysql:host='.$this->getConfig('database')['host'].
+            ';port='.$this->getConfig('database')['port'].
+            ';dbname='.$this->getConfig('database')['dbname'];
+        $dbConnection = new \PDO($dsn, $this->getConfig('database')['username'], $this->getConfig('database')['password']);
+        return new Repository($entityClassName, $dbConnection);
     }
 }

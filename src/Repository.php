@@ -2,6 +2,9 @@
 namespace PapayaWithSugar;
 
 class Repository {
+    protected $entityClassName;
+    protected $dbconnection;
+
     public function findOne($object) {
         return [];
     }
@@ -24,5 +27,10 @@ class Repository {
 
     public function deleteMany($arrayObjects) {
         
+    }
+
+    public function __construct(string $entityClassName, \PDO $dbConnection) {
+        $this->entityClassName = $entityClassName;
+        $this->dbConnection = $dbConnection;
     }
 }
